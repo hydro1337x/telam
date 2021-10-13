@@ -10,7 +10,7 @@ import Combine
 import Alamofire
 
 protocol Networkable {
-    func request<Value>(endpoint: URLRequestConvertible) -> AnyPublisher<Value, Error> where Value: Decodable
+    func request<Value>(for apiConfiguration: APIConfigurable) -> AnyPublisher<Value, Error> where Value: Decodable
 }
 
 public class Telam: Networkable {
@@ -19,8 +19,8 @@ public class Telam: Networkable {
     
     init() {}
     
-    public func request<Value>(endpoint: URLRequestConvertible) -> AnyPublisher<Value, Error> where Value: Decodable {
-        AF.request(endpoint)
+    public func request<Value>(for apiConfiguration: APIConfigurable) -> AnyPublisher<Value, Error> where Value: Decodable {
+        AF.request(apiConfiguration)
             .cURLDescription(calling: { curl in
                 print(curl)
             })
