@@ -13,6 +13,7 @@ public typealias PathParameter = Int
 public typealias QueryRequestable = Encodable
 public typealias BodyRequestable = Encodable
 public typealias Respondable = Decodable
+public struct Discardable: Respondable {}
 
 public protocol APIConfigurable: URLRequestConvertible {
     var path: String { get }
